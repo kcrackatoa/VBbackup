@@ -1,0 +1,39 @@
+#include "mpi.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv){
+  /* initialize MPI as soon as you initialize your program */
+  MPI_Init(&argc, &argv);
+  MPI_Status;
+  int tag;
+  int message, rank, size;
+  MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+  MPI_Comm_size(MPI_COMM_WORLD, &size);
+
+  printf("hello world from process %0d\n",
+	rank, size);
+
+  if(rank ==0){
+    // only rank 0 does this
+    MPI_Send(&message, 1, MPI_INT, rank+1, tag, MPI_COMM_WORLD);
+  }else{
+	MPI_Recv(&message, 1, MPI_INT, rank -1, ta, MPI_COMM_WORLD);
+  }
+
+  if (rank == size - 1){
+	MPI();
+}
+
+if(rank == 0){
+  printf("success");
+}
+
+  /*All instances of this API program must enter the "finalize" 
+  function before exiting*/
+  MPI_Finalize();
+  exit(0);
+  return 0;
+
+}
